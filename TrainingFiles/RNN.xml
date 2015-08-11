@@ -1,0 +1,24 @@
+<MeetCI>
+  <!--You have a CHOICE of the next 2 items at this level-->
+  <MachineLearning>
+    <prediction>
+      <datafile>SpokenDigitOneTrain.csv</datafile>
+      <input>13</input>
+      <output>1</output>
+      <classes>10</classes>
+      <split>0</split>
+      <delimiter>string</delimiter>
+      <algorithm>
+        <RecurrentNeuralNetwork>
+          <RNN_Type>Elman</RNN_Type>
+          <hiddenLayerActivation>Sigmoid</hiddenLayerActivation>
+          <hiddenNeurons>40</hiddenNeurons>
+          <outputLayerActivation>Softmax</outputLayerActivation>
+          <epochs>3</epochs>
+          <momentum>0.9</momentum>
+          <learningRate>0.0001</learningRate>
+        </RecurrentNeuralNetwork>
+      </algorithm>
+    </prediction>
+  </MachineLearning>
+</MeetCI>
