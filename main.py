@@ -73,7 +73,7 @@ else:
                 from python.pyBrain.PyBrain_RBF_Iris import exec_algo
                 exec_algo()
             elif response=='Neuroph':
-                 p=os.popen('java -jar Java/Neuroph/JavaPlugin.jar Java/Neuroph/JavaPlugin/examples/MLP_Iris.xml Java/Neuroph/JavaPlugin/output','r')
+                 p=os.popen('java -jar Java/JavaPlugin.jar '+file_name+' OUTPUT','r')
             elif response=='Fann':
                  subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
              
