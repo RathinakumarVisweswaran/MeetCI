@@ -70,8 +70,8 @@ else:
             print '\n'
             response=raw_input('Please type the name of the library which you would like to use for execution: \n')
             if response=='pyBrain':
-                from python.pyBrain.PyBrain_RBF_Iris import exec_algo
-                exec_algo()
+                from python.pyBrain.PyBrain_RBF import exec_algo
+                exec_algo(file_name)
             elif response=='Neuroph':
                  p=os.popen('java -jar Java/JavaPlugin.jar '+file_name+' OUTPUT','r')
             elif response=='Fann':
