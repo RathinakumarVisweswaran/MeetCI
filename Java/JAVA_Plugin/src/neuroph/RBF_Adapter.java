@@ -4,12 +4,14 @@ import interfaces.Adapter;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.nnet.RBFNetwork;
 import org.neuroph.nnet.learning.RBFLearning;
 import xml.MachineLearning;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -18,28 +20,36 @@ import java.util.Arrays;
 public class RBF_Adapter implements Adapter {
 
     @Override
-    public String tranNeuralNetwork(MachineLearning machineLearning, String saveLocation) {
+    public String trainNeuralNetwork(MachineLearning machineLearning, String saveLocation) {
 
 
-        // get the path to file with data
-        String inputFileName = "data/Sine.txt";
+        xml.Classification xmlClassification = machineLearning.getClassification();
+        xml.RadialBasisFunctionNetwork xmlRBF = xmlClassification.getAlgorithm().getRadialBasisFunctionNetwork();
 
-        // create MultiLayerPerceptron neural network
-        RBFNetwork neuralNet = new RBFNetwork(1, 15, 1);
+        String inputFileName = xmlClassification.getDatafile();
+        inputFileName = (new File(inputFileName)).getAbsolutePath();
+        int inputNeurons = xmlClassification.getInput();
+        int outputNeurons = xmlClassification.getOutput();
+        int hiddenNeurons = xmlRBF.getHiddenNeurons();
+        int epochs = xmlRBF.getEpochs();
 
+        double learningRate = Double.parseDouble(xmlRBF.getLearningRate().toString());
+        String outputLayerActivation = xmlRBF.getOutputLayerActivation().toUpperCase();
+
+        // create RadialBasisFunction neural network
+        RBFNetwork neuralNet = new RBFNetwork(inputNeurons, hiddenNeurons, outputNeurons);
         // create training set from file
-        DataSet dataSet = DataSet.createFromFile(inputFileName, 1, 1, ",", false);
+        DataSet dataSet = DataSet.createFromFile(inputFileName, inputNeurons, outputNeurons, ",", false);
 
+        DataSet.createFromFile(inputFileName, inputNeurons, outputNeurons, ",", false);
         RBFLearning learningRule = ((RBFLearning)neuralNet.getLearningRule());
-        learningRule.setLearningRate(0.02);
-        learningRule.setMaxError(0.01);
+        learningRule.setLearningRate(learningRate);
+        learningRule.setMaxError(epochs);
         //learningRule.addListener(this);
 
         // train the network with training set
         neuralNet.learn(dataSet);
-
-        System.out.println("Done training.");
-        System.out.println("Testing network...");
+        saveModel(neuralNet, saveLocation);
 
         //testNeuralNetwork(neuralNet, dataSet);
         return null;
@@ -47,15 +57,16 @@ public class RBF_Adapter implements Adapter {
 
     private String saveModel(RBFNetwork neuralNet, String saveLocation)
     {
-        //saving the model
-        File outputDir = new File(saveLocation+"\\"+System.currentTimeMillis());
-        //File input = new File(inputFileName);
+        File outputDir = new File(saveLocation + File.separator + System.currentTimeMillis());
+        String saveFile = "";
         if(outputDir.mkdir())
         {
-            neuralNet.save(outputDir.getAbsolutePath().concat("\\MLP"));
-            System.out.println("saving to " + outputDir.getAbsolutePath().concat("\\MLP"));
+            String modelName = "Neuroph_RBF";
+            saveFile = outputDir.getAbsolutePath().concat(File.separator + modelName);
+            neuralNet.save(saveFile);
+            System.out.println("saving to " + saveFile);
         }
-        return outputDir.getAbsolutePath().concat("\\MLP");
+        return saveFile;
     }
 
     public void testNeuralNetwork(String savedModel, String testDataFile, String output) throws IOException {

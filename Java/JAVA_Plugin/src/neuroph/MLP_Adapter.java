@@ -5,17 +5,16 @@ import org.neuroph.core.Layer;
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
-import org.neuroph.core.transfer.*;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.NeuronProperties;
 import org.neuroph.util.TransferFunctionType;
 import xml.MachineLearning;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Rathinakumar on 7/11/2015.
@@ -23,7 +22,7 @@ import java.util.Map;
 public class MLP_Adapter implements Adapter {
 
     @Override
-    public String tranNeuralNetwork(MachineLearning machineLearning, String saveLocation) throws IOException {
+    public String trainNeuralNetwork(MachineLearning machineLearning, String saveLocation) throws IOException {
         // TODO Auto-generated method stub
         // get the path to file with data
         /*
@@ -41,6 +40,7 @@ public class MLP_Adapter implements Adapter {
 
 
         String inputFileName = xmlClassification.getDatafile();
+        inputFileName = (new File(inputFileName)).getAbsolutePath();
         int inputNeurons = xmlClassification.getInput();
         int outputNeurons = xmlClassification.getOutput();
         String hiddenLayers = xmlMLP.getHiddenLayers();

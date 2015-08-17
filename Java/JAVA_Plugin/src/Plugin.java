@@ -24,7 +24,7 @@ public class Plugin {
             MachineLearning machineLearning = meetCI.getMachineLearning();
             System.out.println(meetCI);
             Adapter adapter = AdapterFactory.getAdapter(machineLearning);
-            outptut = adapter.tranNeuralNetwork(machineLearning, outputLocation);
+            outptut = adapter.trainNeuralNetwork(machineLearning, outputLocation);
         }
         else if(meetCI.getExpertSystem()!=null)
         {
