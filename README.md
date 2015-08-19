@@ -34,14 +34,17 @@ Java and C++ requirements are optional, based on the need for your use (if you d
 Java libraries, you can skip the process for Java).
 
 requirements for Python:
-	
+python 2.7.9
+pyBrain
+generateDS 2.16a0
+
 requirements for Java:
 	Java 1.7
 	JAXB(usually comes with JDK for Java 1.6 and ablove)
 	(note: All other libraries are included as part of the project)
 	
 requirements for C++:
-
+FANN Library Version 2.2.0.
 
 How to run:(written for Windows)
 
