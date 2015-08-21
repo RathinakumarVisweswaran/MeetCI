@@ -1,5 +1,7 @@
 import meetCI as ml
 import numpy as np
+from os import sep, makedirs
+import time
 from pybrain.structure import FeedForwardNetwork
 from pybrain.structure import LinearLayer
 from pybrain.structure import SigmoidLayer
@@ -9,12 +11,12 @@ from pybrain.supervised.trainers import BackpropTrainer
 from pybrain.datasets import ClassificationDataSet
 from pybrain.utilities import percentError
 from pybrain.structure import RecurrentNetwork
+import pickle
 
-def  exec_algo():
-        rootObj=ml.parse('/home/suhaspillai/ExpertSystem_MLSoftware/XMLfiles/RNN.xml')
+def  exec_algo(xml_file, output_location):
+        rootObj=ml.parse(xml_file)
         file_name=rootObj.MachineLearning.prediction.datafile
         file=open(file_name)
-        #testfile=open("//home/suhaspillai/Desktop/SpokenDigitTest.csv")
         var_input=rootObj.MachineLearning.prediction.input
         var_output=rootObj.MachineLearning.prediction.output
         var_classes=rootObj.MachineLearning.prediction.classes
@@ -27,13 +29,7 @@ def  exec_algo():
                 inp=tuple(data[:var_input])
                 output=tuple(data[var_input:])
                 DS.addSample(inp,output)
-        '''                     
-        for line in testfile.readlines():
-                data=[float(x) for x in line.strip().split(',') if x != '']
-                inp=tuple(data[:13])
-                output=tuple(data[13:])
-                DS1.addSample(inp,output)
-        '''
+
         tstdata,trndata=DS.splitWithProportion(0)
         #trndatatest,tstdatatest=DS1.splitWithProportion(0)
 
@@ -44,23 +40,6 @@ def  exec_algo():
         for i in xrange(trndata.getLength()):
                 if (trndata.getSample(i)[1][0]!=100):
                         trdata.addSample(trndata.getSample(i)[0],trndata.getSample(i)[1])
-
-        '''               
-        count=0;
-        for i in xrange(DS1.getLength()):
-                if (count<5):
-                        if (DS1.getSample(i)[1][0]!=100):
-                                tsdata.addSample(DS1.getSample(i)[0],DS1.getSample(i)[1])
-                                #print "hi"
-                        else:
-                                count=count+1
-                else:
-                        if (DS1.getSample(i)[1][0]!=100):
-                                tsdata1.addSample(DS1.getSample(i)[0],DS1.getSample(i)[1])
-         '''                       
-                                
-                        
-                
 
         trdata._convertToOneOfMany()
         #tsdata._convertToOneOfMany()
@@ -121,5 +100,10 @@ def  exec_algo():
         print ('%f \n') % (100-result)
         #print ('%f \n') % (100-result1)
 
-
-
+        ts=time.time()
+        directory = output_location + sep + str(int(ts))
+        makedirs(directory)
+        fileObject=open(output_location + sep + str(int(ts)) + sep + 'pybrain_RNN','w')
+        pickle.dump(trainer,fileObject)
+        pickle.dump(rnn,fileObject)
+        fileObject.close()

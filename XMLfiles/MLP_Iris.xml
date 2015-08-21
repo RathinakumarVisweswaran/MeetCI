@@ -11,7 +11,7 @@
         <MultiLayerPerceptron>
           <inputLayerActivation>Linear</inputLayerActivation>
           <hiddenLayerActivation>Sigmoid</hiddenLayerActivation>
-          <hiddenLayers>3,4</hiddenLayers>
+          <hiddenLayers>10</hiddenLayers>
           <outputLayerActivation>Sigmoid</outputLayerActivation>
           <momentum>0.01</momentum>
           <epochs>30</epochs>
