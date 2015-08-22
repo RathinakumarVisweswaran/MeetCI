@@ -65,17 +65,35 @@ else:
         for child in algorithm:
             algorithm_name=child.tag
 
-        if algorithm_name in dict_algorithm['classification']:
-            print dict_lib['classification']
-            print '\n'
-            response=raw_input('Please type the name of the library which you would like to use for execution: \n')
-            if response=='pyBrain':
-                from python.pyBrain.PyBrain_RBF import exec_algo
-                exec_algo(file_name)
-            elif response=='Neuroph':
-                 p=os.popen('java -jar Java/JavaPlugin.jar '+file_name+' OUTPUT','r')
-            elif response=='Fann':
-                 subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+        if algorithm_name=='RadialBasisFunctionNetwork':
+            
+            if algorithm_name in dict_algorithm['classification']:
+                print dict_lib['classification']
+                print '\n'
+                response=raw_input('Please type the name of the library which you would like to use for execution: \n')
+                if response=='pyBrain':
+                    from python.pyBrain.RBF import exec_algo
+                    exec_algo(file_name,'OUTPUT')
+                    
+                elif response=='Neuroph':
+                    # subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+                    p=os.popen('java -jar Java/Neuroph/JavaPlugin.jar Java/Neuroph/JavaPlugin/examples/MLP_Iris.xml Java/Neuroph/JavaPlugin/output','r')
+                elif response=='Fann':
+                    subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+
+        elif algorithm_name=='MultiLayerPerceptron':
+            if algorithm_name in dict_algorithm['classification']:
+                print dict_lib['classification']
+                print '\n'
+                response=raw_input('Please type the name of the library which you would like to use for execution: \n')
+                if response=='pyBrain':
+                    from python.pyBrain.MLP import exec_algo
+                    exec_algo(file_name,'OUTPUT')
+                elif response=='Neuroph':
+                    p=os.popen('java -jar Java/Neuroph/JavaPlugin.jar Java/Neuroph/JavaPlugin/examples/MLP_Iris.xml Java/Neuroph/JavaPlugin/output','r')
+                elif response=='Fann':
+                    subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+
              
     elif problem_type=="prediction":
         print 'hi'
@@ -89,34 +107,9 @@ else:
             response=raw_input('Please type the name of the library which you would like to use for execution: \n')
             if response=='pyBrain':
                 from python.pyBrain.RNN import exec_algo
-                exec_algo()
+                exec_algo(file_name,'OUTPUT')
     
      
              
               
-print 'Execution completed'          
-
-
-'''
-#calling java stuff
-            
-            import os
-             p=os.popen('java -jar JavaPlugin.jar JavaPlugin/examples/MLP_Iris.xml JavaPlugins/output','r')
-             
-            while 1:
-	line=p.readline()
-	if not line: break
-	print line
-            
-            
-import subprocess
-subprocess.call('./FANN_MLP_Iris')    
-'''        
-        
-
-        
-    
-    
-    
-
-
+print 'Execution completed'

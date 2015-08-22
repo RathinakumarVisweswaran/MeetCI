@@ -7,16 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62aedb4f-0515-4e50-b911-d3a7bedac10a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaPlugin_jar/JAVA_Plugin.jar" afterPath="$PROJECT_DIR$/out/artifacts/JavaPlugin_jar/JAVA_Plugin.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../JavaPlugin.jar" afterPath="$PROJECT_DIR$/../JavaPlugin.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JAVA_Plugin/neuroph/MLP_Adapter.class" afterPath="$PROJECT_DIR$/out/production/JAVA_Plugin/neuroph/MLP_Adapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JAVA_Plugin/neuroph/RBF_Adapter.class" afterPath="$PROJECT_DIR$/out/production/JAVA_Plugin/neuroph/RBF_Adapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/jess.jar" afterPath="$PROJECT_DIR$/lib/jess.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../python/pyBrain/RNN.py" afterPath="$PROJECT_DIR$/../../python/pyBrain/RNN.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JAVA_Plugin/examples/exp_security_assessment.xml" afterPath="$PROJECT_DIR$/out/production/JAVA_Plugin/examples/exp_security_assessment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/examples/exp_security_assessment.xml" afterPath="$PROJECT_DIR$/src/examples/exp_security_assessment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../main.py" afterPath="$PROJECT_DIR$/../../main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../python/pyBrain/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../python/pyBrain/.idea/workspace.xml" />
     </list>
     <ignored path="JAVA_Plugin.iws" />
