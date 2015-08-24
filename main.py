@@ -67,9 +67,9 @@ else:
                     
                 elif response=='Neuroph':
                     # subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
-                    p=os.popen('java -jar Java\JavaPlugin.jar '+file_name+' OUTPUT','r')
+                    p=os.popen('java -jar Java'+os.sep+'JavaPlugin.jar '+file_name+' OUTPUT','r')
                 elif response=='Fann':
-                    subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+                    subprocess.call('.'+os.sep+'C'+os.sep+'FANN-2.2.0-Source'+os.sep+'examples'+os.sep+'FANN_MLP_Iris')
 
         elif algorithm_name=='MultiLayerPerceptron':
             if algorithm_name in dict_algorithm['classification']:
@@ -80,9 +80,9 @@ else:
                     from python.pyBrain.MLP import exec_algo
                     exec_algo(file_name,'OUTPUT')
                 elif response=='Neuroph':
-                    p=os.popen('java -jar Java\JavaPlugin.jar '+file_name+' OUTPUT','r')
+                    p=os.popen('java -jar Java'+os.sep+'JavaPlugin.jar '+file_name+' OUTPUT','r')
                 elif response=='Fann':
-                    subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
+                    subprocess.call('.'+os.sep+'C'+os.sep+'FANN-2.2.0-Source'+os.sep+'examples'+os.sep+'FANN_MLP_Iris')
 
              
     elif problem_type=="prediction":
