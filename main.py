@@ -67,7 +67,7 @@ else:
                     
                 elif response=='Neuroph':
                     # subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
-                    p=os.popen('java -jar '+file_name+'OUTPUT','r')
+                    p=os.popen('java -jar Java\JavaPlugin.jar '+file_name+' OUTPUT','r')
                 elif response=='Fann':
                     subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
 
@@ -80,7 +80,7 @@ else:
                     from python.pyBrain.MLP import exec_algo
                     exec_algo(file_name,'OUTPUT')
                 elif response=='Neuroph':
-                    p=os.popen('java -jar '+file_name+'OUTPUT','r')
+                    p=os.popen('java -jar Java\JavaPlugin.jar '+file_name+' OUTPUT','r')
                 elif response=='Fann':
                     subprocess.call('./C/FANN-2.2.0-Source/examples/FANN_MLP_Iris')
 
