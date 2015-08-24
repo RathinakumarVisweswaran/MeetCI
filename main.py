@@ -19,30 +19,20 @@ parser.add_option("-q", "--quiet",
 
 file_name=options.filename
 
-#file_name='/home/suhaspillai/ExpertSystem_MLSoftware/XMLfiles/RBF1.xml'
-#rootObj=ml.parse('RBF1.xml')
 tree=ET.parse(file_name)
 root=tree.getroot()
 
 #need to figure out how to parse the xml and then call other stuff
-s_MultiLayerPerceptron=Set(['Fann','pyBrain','theano','Neuroph'])
+s_MultiLayerPerceptron=Set(['Fann','pyBrain','Neuroph'])
 s_RadialBasisFunctionNetwork=Set(['pyBrain','Neuroph'])
 s_RecurrentNeuralNetworks=Set(['pyBrain'])
-s_SupportVectorMachines=Set(['Scikit'])
-s_RandomForest=Set(['Scikit'])
-'''
-d_theano={'MultiLayerPerceptron'}
-d_pyBrain={'MultiLayerPerceptron','RadialBasisFunctionNetwork','RecurrentNeuralNetwork'}
-d_Fann={'MultiLayerPerceptron'}
-d_scikit={'SupportVectorMachines','RandomForest'}
-'''
 dict_lib={}
-dict_lib['classification']=[s_MultiLayerPerceptron | s_RadialBasisFunctionNetwork | s_SupportVectorMachines | s_RandomForest]
+dict_lib['classification']=[s_MultiLayerPerceptron | s_RadialBasisFunctionNetwork]
 dict_lib['prediction']=[s_RecurrentNeuralNetworks]
 dict_lib['expertsystem']=Set(['Jess'])
 
 dict_algorithm={}
-dict_algorithm['classification']=['MultiLayerPerceptron','RadialBasisFunctionNetwork','SupportVectorMachines','RandomForest']
+dict_algorithm['classification']=['MultiLayerPerceptron','RadialBasisFunctionNetwork']
 dict_algorithm['prediction']=['RecurrentNeuralNetwork']
 dict_algorithm['expertsystem']=['Jess']              
 
