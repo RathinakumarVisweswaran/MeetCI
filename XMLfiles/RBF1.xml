@@ -1,7 +1,7 @@
 <MeetCI>
   <MachineLearning>
     <classification>
-      <datafile>Iris.csv</datafile>
+      <datafile>TrainingFiles\Iris.csv</datafile>
       <input>4</input>
       <output>1</output>
       <classes>3</classes>
